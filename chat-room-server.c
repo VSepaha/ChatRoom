@@ -53,24 +53,24 @@ int main(int argc, char* argv[]){
 		connfd = Accept(sockfd, NULL, 0);
 		printf("Got a connection from a new client\n");
 
-		// Open the file we will be writing to (a+ means to append instead of w which overwrites)
-    	FILE* fp = Fopen(OUTPUT_FILE, "a+");
 
 		// Read from the client connection
 		char textBuf[BUFFER_SIZE];
 		int readLen;
 		while ( (readLen=Read(connfd, textBuf, sizeof(textBuf))) > 0){
 			if(readLen > 1){
-				printf("Read Length = %d, buffer = %s", readLen, textBuf);
+				// Open the file we will be writing to (a+ means to append instead of w which overwrites)
+    			FILE* fp = Fopen(OUTPUT_FILE, "a+");
+				printf("Buffer = %s", textBuf);
 				// Write to the output file
 				Fwrite(textBuf, sizeof(char), readLen, fp);
 				bzero(&textBuf, sizeof(textBuf));
+				Fclose(fp);
 			} else {
 				printf("Finished reading from the client\n");
 				break;
 			}
 		}
-		Fclose(fp);
 		Close(connfd);
 	}
 
