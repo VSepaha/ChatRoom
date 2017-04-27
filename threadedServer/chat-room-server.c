@@ -31,12 +31,14 @@ void* processRequest(void* t){
 	while ( (readLen=Read(connfd, textBuf, sizeof(textBuf))) > 0){
 		if(readLen > 1){
 			// Open the file we will be writing to (a+ means to append instead of w which overwrites)
+			pthread_mutex_lock(&file_lock);
     		FILE* fp = Fopen(OUTPUT_FILE, "a+");
 			printf("Buffer = %s", textBuf);
 			// Write to the output file
 			Fwrite(textBuf, sizeof(char), readLen, fp);
 			bzero(&textBuf, sizeof(textBuf));
 			Fclose(fp);
+			pthread_mutex_unlock(&file_lock);
 		} else {
 			printf("Finished reading from the client %d\n", threadId+1);
 			break;
