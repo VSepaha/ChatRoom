@@ -6,7 +6,7 @@ writing to the file. */
 #include "csapp.h"
 
 #define OUTPUT_FILE "logfile.txt"
-#define NUM_THREADS 2
+#define NUM_THREADS 25
 #define BUFFER_SIZE 1024
 
 typedef struct thread_data {
