@@ -29,7 +29,7 @@ void* processRequest(void* t){
 	int readLen;
 
 	while ( (readLen=Read(connfd, textBuf, sizeof(textBuf))) > 0){
-		if(readLen > 1){
+		if(!strstr(textBuf, "/exit")){
 			// Open the file we will be writing to (a+ means to append instead of w which overwrites)
 			pthread_mutex_lock(&file_lock);
     		FILE* fp = Fopen(OUTPUT_FILE, "a+");
