@@ -7,7 +7,7 @@ writing to the file. */
 
 #define OUTPUT_FILE "logfile.txt"
 #define NUM_THREADS 25
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 100
 
 typedef struct thread_data {
 	int connfd;
@@ -33,7 +33,7 @@ void* processRequest(void* t){
 			// Open the file we will be writing to (a+ means to append instead of w which overwrites)
 			pthread_mutex_lock(&file_lock);
     		FILE* fp = Fopen(OUTPUT_FILE, "a+");
-			printf("Buffer = %s", textBuf);
+			printf("User %d: %s", threadId+1, textBuf);
 			// Write to the output file
 			Fwrite(textBuf, sizeof(char), readLen, fp);
 			bzero(&textBuf, sizeof(textBuf));
