@@ -7,7 +7,7 @@ writing to the file. */
 
 #define OUTPUT_FILE "logfile.txt"
 #define NUM_THREADS 25
-#define BUFFER_SIZE 100
+#define BUFFER_SIZE 160
 
 typedef struct thread_data {
 	int connfd;
