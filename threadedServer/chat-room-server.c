@@ -61,6 +61,10 @@ int main(int argc, char* argv[]){
 
 	pthread_mutex_init(&file_lock, NULL); // Initialize the file lock
 
+	// Empty out the file
+	FILE* reset = Fopen(OUTPUT_FILE, "w");
+	Fclose(reset);
+
 
 	/* Check arguments */
     if (argc != 2) {
