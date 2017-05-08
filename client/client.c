@@ -27,7 +27,7 @@ int socketfd;
 if(argc!=3) //requires user hostname and port hence 3 args
 	{
 	
-	fprintf(stderr,"Please give a  hostname port\n");
+	fprintf(stderr,"Please give a hostname port\n");
 	exit(1);
 	}
 
