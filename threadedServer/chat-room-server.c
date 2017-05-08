@@ -1,14 +1,11 @@
-/* For now the program is iterative, once it is verified that is working, it will be written 
-in parallel. For now the file is opened in the beginning and locks will be used when a thread is
-writing to the file. */
-
-
+/* Server code */
 #include "csapp.h"
 
 #define OUTPUT_FILE "logfile.txt"
 #define NUM_THREADS 25
 #define BUFFER_SIZE 160
 
+// Thread data structure to keep track of arguments passed to each thread
 typedef struct thread_data {
 	int connfd;
 	int threadId;
@@ -115,7 +112,6 @@ int main(int argc, char* argv[]){
 		}
 	}
 	Close(sockfd);
-
 
 	return 0;
 }
