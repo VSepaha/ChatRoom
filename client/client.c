@@ -106,10 +106,9 @@ while(1)
 	}
 	
 	strcat(bigbuff,namebuff);//add name
-	strcat(bigbuff,":"); //add token
-	printf("bigbuff so far %s \n",bigbuff);
+	strcat(bigbuff,": "); //add token
 	strcat(bigbuff,buff);//add message
-	printf("our bigbuff now is %s\n",bigbuff);
+	strcat(bigbuff,"\n");
 	num = send(socketfd,bigbuff,strlen(bigbuff),0);//sending 
 	//num = send(socketfd,buff,isize,0);
 	if(num == -1)//error 
