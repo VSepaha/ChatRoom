@@ -26,7 +26,7 @@ int socketfd;
 if(argc!=3) //requires user hostname and port hence 3 args
 	{
 	
-	fprintf(stderr,"Please give a hostname port\n");
+	fprintf(stderr,"Please give a  hostname port\n");
 	exit(1);
 	}
 
@@ -117,9 +117,11 @@ while(1)
 		perror("send");
 	}
 	printf("sent\n");
-	if(strstr(bigbuff,"exit/")!=NULL) //exit code
+	if(strstr(bigbuff,"/exit")!=NULL) //exit code
 	{
 		printf("detected exit now leaving\n");
+		close(socketfd);
+		exit(2);
 		break;
 	}
 }
