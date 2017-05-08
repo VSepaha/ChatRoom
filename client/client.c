@@ -1,5 +1,4 @@
 
-
 //this portion of the code was writen by brian chu
 
 #include <fcntl.h>
@@ -92,10 +91,12 @@ while(1)
 	
 	
 }
-
+strtok(namebuff,"\n");//remove newline
 while(1)
 {
 	printf("Enter Prompt:\n");//promtping
+	memset(buff,0,sizeof(buff));
+	memset(bigbuff,0,sizeof(bigbuff));
 	isize = read(STDIN_FILENO,buff,sizeof(buff)); //promtping
 	if(isize == -1) //error test
 	{
@@ -103,9 +104,9 @@ while(1)
 		perror("read");
 		continue;
 	}
-	strtok(namebuff,"\n");//remove newline
+	
 	strcat(bigbuff,namebuff);//add name
-	strcat(bigbuff,"@s"); //add token
+	strcat(bigbuff,":"); //add token
 	printf("bigbuff so far %s \n",bigbuff);
 	strcat(bigbuff,buff);//add message
 	printf("our bigbuff now is %s\n",bigbuff);
